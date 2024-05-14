@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infastructure.Repositories
 {
@@ -18,7 +19,7 @@ namespace Infastructure.Repositories
             Context = context;
         }
 
-        public TEntity? Get(object id)
+        public TEntity Get(object id)
         {
             // Here we are working with a DbContext, not PlutoContext. So we don't have DbSets 
             // such as Courses or Authors, and we need to use the generic Set() method to access them.
@@ -40,7 +41,7 @@ namespace Infastructure.Repositories
             return Context.Set<TEntity>().Where(predicate);
         }
 
-        public TEntity? SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
             return Context.Set<TEntity>().SingleOrDefault(predicate);
         }
@@ -83,7 +84,7 @@ namespace Infastructure.Repositories
             Context.Set<TEntity>()
                 .UpdateRange(entities);
         }
-        public async Task<TEntity?> GetAsync(object id)
+        public async Task<TEntity> GetAsync(object id)
         {
             return await Context.Set<TEntity>().FindAsync(id);
         }
@@ -98,7 +99,7 @@ namespace Infastructure.Repositories
             return await Task.Run(() => Find(predicate));
         }
 
-        public async Task<TEntity?> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }

@@ -1,10 +1,16 @@
-﻿using System;
+﻿using Domain.Entities;
+using Domain.Repositories;
+using Infastructure.DbContexts;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Infastructure.Repositories
 {
-    internal class ProductRepository
+    public class ProductRepository : GenericRepository<Product>,IProductRepository
     {
+        public ProductRepository(ApplicationDbContext context) : base(context)
+        {
+        }
     }
 }

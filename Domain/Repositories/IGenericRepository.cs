@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +9,7 @@ namespace Domain.Repositories
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        TEntity? Get(object id);
+        TEntity Get(object id);
 
         IEnumerable<TEntity> GetAll();
 
@@ -18,7 +18,7 @@ namespace Domain.Repositories
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
         // This method was not in the videos, but I thought it would be useful to add.
-        TEntity? SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
+        TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
         bool Any(Expression<Func<TEntity, bool>> predicate);
 
@@ -32,14 +32,14 @@ namespace Domain.Repositories
 
         void RemoveRange(IEnumerable<TEntity> entities);
 
-        Task<TEntity?> GetAsync(object id);
+        Task<TEntity> GetAsync(object id);
 
         Task<IEnumerable<TEntity>> GetAllAsync();
 
         Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
 
         // This method was not in the videos, but I thought it would be useful to add.
-        Task<TEntity?> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
 
         Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate);
 
