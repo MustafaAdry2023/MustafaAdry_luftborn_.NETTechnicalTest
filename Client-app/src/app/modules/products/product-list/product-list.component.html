@@ -1,0 +1,47 @@
+<div class="content-block dx-card responsive-paddings">
+<dx-data-grid id="gridContainer" [dataSource]="productList" [allowColumnReordering]="true"
+[rowAlternationEnabled]="true" [showBorders]="true" [allowColumnResizing]="true" [repaintChangesOnly]="true"
+ #dataGrid1
+ [columnAutoWidth]="true"
+ [wordWrapEnabled]="true">
+
+<dxo-paging [pageSize]="10"></dxo-paging>
+<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 25, 50, 100]" [visible]="true"
+  [showInfo]="true" [showNavigationButtons]="true"></dxo-pager>
+
+<dxo-filter-row [visible]="true" [applyFilter]="true"></dxo-filter-row>
+<dxo-header-filter [visible]="true"></dxo-header-filter>
+
+<dxo-editing mode="row" [allowUpdating]="updateBtnAccess" [allowDeleting]="deleteBtnAccess" [useIcons]="true"></dxo-editing>
+
+
+
+<dxo-toolbar>
+  <dxi-item *ngIf="addBtnAccess"  location="after" widget="dxButton" [options]="{
+      icon: 'plus',
+      onClick: openAddProduct,
+      text: 'Add Product'
+  }">
+  </dxi-item>
+</dxo-toolbar>
+
+
+<dxo-scrolling useNative="true" scrollByContent="true" scrollByThumb="true" showScrollbar="onHover">
+</dxo-scrolling>
+
+<dxi-column dataField="name" alignment="left" caption="Product Name"> </dxi-column>
+<dxi-column dataField="price" alignment="left"  caption="Price"> </dxi-column>
+<dxi-column dataField="description" alignment="left" caption="Description"> </dxi-column>
+<dxi-column dataField="publishDate" alignment="left" caption="Publish Date"  dataType="date" fomrat="dd/MM/YYYY"> </dxi-column>
+
+
+<dxi-column type="buttons">
+  <dxi-button  name="edit" hint="Edit" icon="edit" [onClick]="UpdateIconClick"></dxi-button>
+  <dxi-button  name="delete" [onClick]="DeleteIconClick"></dxi-button>
+
+</dxi-column>
+
+
+
+</dx-data-grid>
+</div>

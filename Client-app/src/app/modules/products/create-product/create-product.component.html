@@ -1,0 +1,61 @@
+<div class="content-block dx-card responsive-paddings">
+
+
+
+
+<form class="create-account-form" (submit)="onSubmit($event)">
+  <dx-form [formData]="formData" [disabled]="loading">
+
+
+
+
+    <dxi-item dataField="name" editorType="dxTextBox"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Product Name', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+       <dxo-label [visible]="false"></dxo-label>
+    </dxi-item>
+
+    <dxi-item dataField="price" editorType="dxNumberBox"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Price', mode: 'number' }">
+      <dxi-validation-rule type="required" message="Price is required"></dxi-validation-rule>
+      <dxi-validation-rule type="custom" message="Price must be a nmuber and greater than zero" [validationCallback]="validateNumber"></dxi-validation-rule>
+
+      <dxo-label [visible]="false"></dxo-label>
+    </dxi-item>
+
+    <dxi-item dataField="description" editorType="dxTextBox"
+      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Description', mode: 'text' }">
+      <dxi-validation-rule type="required" message="Description is required"></dxi-validation-rule>
+       <dxo-label [visible]="false"></dxo-label>
+    </dxi-item>
+
+    <dxi-item dataField="publishDate" editorType="dxTextBox"
+    [editorOptions]="{ stylingMode: 'filled', mode: 'date' }">
+    <dxi-validation-rule type="required" message="Publish Date is required"></dxi-validation-rule>
+     <dxo-label [visible]="false"></dxo-label>
+  </dxi-item>
+
+
+
+    <dxi-item itemType="button">
+      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'createProductTemplate'">
+      </dxo-button-options>
+    </dxi-item>
+
+
+
+    <ng-container *dxTemplate="let item of 'createProductTemplate'">
+      <div>
+        <span class="dx-button-text">
+          <ng-container *ngIf="loading; else notLoading">
+            <dx-load-indicator width="24px" height="24px" [visible]="true"></dx-load-indicator>
+          </ng-container>
+
+          <ng-template #notLoading>Create a new product</ng-template>
+        </span>
+      </div>
+    </ng-container>
+
+  </dx-form>
+</form>
+</div>
